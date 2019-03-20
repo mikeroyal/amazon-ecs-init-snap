@@ -1,4 +1,5 @@
 name: amazon-ecs-init
+version: git
 summary: The Amazon Elastic Container Service RPM.
 description: 
   
@@ -16,7 +17,10 @@ apps:
   amazon-ecs-init:
     command: bin/amazon-ecs-init
     plugs:
+      - home
       - network
+      - removable-media
+
 
 parts:
   amazon-ecs-init:
@@ -45,7 +49,7 @@ parts:
         -X 'github.com/aws/amazon-ecs-init/version.Version=$(git describe --tags --abbrev=0)'" \
         -a -installsuffix cgo -o $SNAPCRAFT_PART_INSTALL/bin/amazon-ecs-init
     build-snaps:
-      - 
+      - go
     build-packages:
       - git
       - sed
